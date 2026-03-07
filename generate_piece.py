@@ -25,6 +25,11 @@ recents = [row[0] for row in cursor.fetchall()]
 
 universe = [i for i in range(1, NUM_PIECES + 1)]
 sample_space = [piece for piece in universe if piece not in recents]
+
+# If everything has been used recently, reset
+if not sample_space:
+    sample_space = universe
+
 piece = random.choice(sample_space)
 
 now = datetime.datetime.now(timezone)
